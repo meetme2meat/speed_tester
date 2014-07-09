@@ -38,9 +38,10 @@
   <div id='wrapper'>
     <div id='header'> Welcome to SpeedTester :) </div>
     <div id='content'>
-      <a href='javascript:void();' id='start'> Start Testing </a> <br/>
+      <a href='javascript:void();' id='start'>Start Testing</a>
+      <br/>
 
-      Your Download Speed is <span class="speed" style="color:red"></span>
+      <div class='text' style='display:none;'> Your Download Speed is <span class="speed" style="color:red"></span>
     </div>
 
     <div id='footer'> CopyRight &copy; to Belator </div>
@@ -48,7 +49,9 @@
   <script type='text/javascript'>
     $(document).ready(function(){
       $("a#start").bind('click',function(event){
+        $('div.text').hide();
         event.preventDefault();
+        alert('Downloading ....');
         var getTime = new Date().getTime();
         var files = new Array('/sample128k','/sample256k','/sample512k','/sample1024k','/sample2048k','/sample4096k','/sample8192k')
         var startedAt,endedAt;
@@ -76,6 +79,7 @@
         console.log(data);
         var speed = (data.toFixed(2) + ' Mbps').fixed(2)
         $('span.speed').html(speed);
+        $('div.text').show();
       })
       // $('div#header').hide();
     })
