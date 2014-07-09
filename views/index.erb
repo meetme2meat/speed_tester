@@ -35,30 +35,21 @@
   <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
   <script type='text/javascript'>
     function startDownload() {
-       var getTime = new Date().getTime();
-        console.log('.......1........');
-        var files = new Array('/sample128k','/sample256k','/sample512k','/sample1024k','/sample2048k','/sample4096k','/sample8192k')
-        console.log('.........2........');
-        var startedAt,endedAt;
-        var size = 16256;
-        console.log('.........2........');
-
-        startedAt = (new Date().getTime());
-        console.log('.....Started.....');
-        console.log('Find the problem');
-         $.each(files,function(index,url){
-          var startedAt  = (new Date().getTime());
-            $.ajax({
-              type: 'GET',
-              url: url+'?cached='+getTime,
-              dataType: 'html',
-              async: false
-            }).done(function(){
-              console.log('...Downloaded File...');
-            });
-         })
-        console.log('......TIME......');
-        endedAt = (new Date().getTime());
+      var files = new Array('/sample128k','/sample256k','/sample512k','/sample1024k','/sample2048k','/sample4096k','/sample8192k')
+      var startedAt,endedAt;
+      var size = 16256;
+      startedAt = (new Date().getTime());
+      console.log('.....Started.....');
+      var settings = {cached: false,datatype: 'html'}
+      $.when($.ajax('/sample128k',settings),
+        $.ajax('/sample256k',settings),
+        $.ajax('/sample512k',settings),
+        $.ajax('/sample1024k',settings),
+        $.ajax('/sample2048k',settings),
+        $.ajax('/sample4096k',settings),
+        $.ajax('/sample8192k',settings)
+      ).done(function(a1,a2,a3,a4,a5,a6,a7){
+        endedAt = new Date().getTime();
         var totalTime = (endedAt - startedAt);
         console.log(totalTime);
         var totalsec = totalTime / 1000;
@@ -68,6 +59,51 @@
         var speed = (data.toFixed(2) + ' Mbps').fixed(2)
         $('span.speed').html(speed);
         $('div.text').show();
+      })
+       // $.each(files,function(index,url){
+       //    var startedAt  = (new Date().getTime());
+       //    $.ajax({
+       //      type: 'GET',
+       //      url: url,
+       //      cached: false,
+       //      dataType: 'html',
+       //    }).done(function(){
+       //      console.log('...Downloaded File...');
+       //    });
+       // })
+
+        // console.log('.......1........');
+        // var files = new Array('/sample128k','/sample256k','/sample512k','/sample1024k','/sample2048k','/sample4096k','/sample8192k')
+        // console.log('.........2........');
+        // var startedAt,endedAt;
+        // var size = 16256;
+        // console.log('.........2........');
+
+        // startedAt = (new Date().getTime());
+        // console.log('.....Started.....');
+        // console.log('Find the problem');
+        //  $.each(files,function(index,url){
+        //   var startedAt  = (new Date().getTime());
+        //     $.ajax({
+        //       type: 'GET',
+        //       url: url+'?cached='+getTime,
+        //       dataType: 'html',
+        //       async: true
+        //     }).done(function(){
+
+        //     });
+        //  })
+        // console.log('......TIME......');
+        // endedAt = (new Date().getTime());
+        // var totalTime = (endedAt - startedAt);
+        // console.log(totalTime);
+        // var totalsec = totalTime / 1000;
+        // console.log(totalsec);
+        // var data = (size/1024/totalsec);
+        // console.log(data);
+        // var speed = (data.toFixed(2) + ' Mbps').fixed(2)
+        // $('span.speed').html(speed);
+        // $('div.text').show();
     };
 
     $(document).ready(function(){
