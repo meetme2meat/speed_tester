@@ -47,12 +47,8 @@
     <div id='footer'> CopyRight &copy; to Belator </div>
   </div>
   <script type='text/javascript'>
-    $(document).ready(function(){
-      $("a#start").bind('click',function(event){
-        $('div.text').hide();
-        event.preventDefault();
-        alert('Downloading ....');
-        var getTime = new Date().getTime();
+    function startDownload() {
+       var getTime = new Date().getTime();
         console.log('.......1........');
         var files = new Array('/sample128k','/sample256k','/sample512k','/sample1024k','/sample2048k','/sample4096k','/sample8192k')
         console.log('.........2........');
@@ -84,9 +80,15 @@
         var speed = (data.toFixed(2) + ' Mbps').fixed(2)
         $('span.speed').html(speed);
         $('div.text').show();
+    };
+
+    $(document).ready(function(){
+      $("a#start").bind('click',function(event){
+        $('div.text').hide();
+        startDownload();
       })
       // $('div#header').hide();
-    })
+    });
   </script>
 </body>
 </html>
