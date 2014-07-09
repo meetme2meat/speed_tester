@@ -32,8 +32,8 @@
       background:#ee5;
     }
   </style>
-  <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
-   <script type='text/javascript'>
+  <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+  <script type='text/javascript'>
     function startDownload() {
        var getTime = new Date().getTime();
         console.log('.......1........');
@@ -72,6 +72,7 @@
     $(document).ready(function(){
       $("a#start").bind('click',function(event){
         $('div.text').hide();
+        event.preventDefault();
         startDownload();
       })
       // $('div#header').hide();
@@ -82,7 +83,7 @@
   <div id='wrapper'>
     <div id='header'> Welcome to SpeedTester :) </div>
     <div id='content'>
-      <a href='javascript:void(0);' id='start'>Start Testing</a>
+      <a href='#' id='start'>Start Testing</a>
       <br/>
 
       <div class='text' style='display:none;'> Your Download Speed is <span class="speed" style="color:red"></span>

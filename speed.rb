@@ -9,6 +9,6 @@ get '/' do
   erb :index
 end
 
-get '/favicon.ico' do
-  sendfile File.expand_path('public/favicon.ico')
-end
+# get '/favicon.ico' do
+#   sendfile File.expand_path('public/favicon.ico')
+# end
