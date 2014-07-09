@@ -45,17 +45,18 @@
 
         startedAt = (new Date().getTime());
         console.log('.....Started.....');
-         $.each(files,function(index,url){
-          var startedAt  = (new Date().getTime());
-            $.ajax({
-              type: 'GET',
-              url: url+'?cached='+getTime,
-              dataType: 'html',
-              async: false
-            }).done(function(){
-              console.log('...Downloaded File...');
-            });
-         })
+        console.log('Find the problem');
+         // $.each(files,function(index,url){
+         //  var startedAt  = (new Date().getTime());
+         //    $.ajax({
+         //      type: 'GET',
+         //      url: url+'?cached='+getTime,
+         //      dataType: 'html',
+         //      async: false
+         //    }).done(function(){
+         //      console.log('...Downloaded File...');
+         //    });
+         // })
         console.log('......TIME......');
         endedAt = (new Date().getTime());
         var totalTime = (endedAt - startedAt);
