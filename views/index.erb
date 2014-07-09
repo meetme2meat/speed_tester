@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>
+    Download Tester
+  </title>
+  <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+  <script type='text/javascript'>
+    $(document).ready(function(){
+       var getTime = new Date().getTime();
+       var files = new Array('/sample128k','/sample256k','/sample512k','/sample1024k','/sample2048k','/sample4096k','/sample8192k')
+       var startedAt,endedAt;
+      var size = 16256;
+
+       startedAt = (new Date().getTime());
+       console.log('.....Started.....');
+       $.each(files,function(index,url){
+          var startedAt  = (new Date().getTime());
+          $.ajax({
+            type: 'GET',
+            url: url+'?cached='+getTime,
+            dataType: 'html',
+            async: false
+          }).done(function(){
+            console.log('...Downloaded File...');
+          });
+       })
+      console.log('......TIME......');
+      endedAt = (new Date().getTime());
+      var totalTime = (endedAt - startedAt);
+      console.log(totalTime);
+      var totalsec = totalTime / 1000;
+      console.log(totalsec);
+      var data = (size/1024/totalsec);
+      console.log(data);
+      console.log('Total Time taken is  ...'+data + ' Mbps');
+    })
+  </script>
+</head>
+<body>
+</body>
+</html>
