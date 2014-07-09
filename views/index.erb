@@ -53,11 +53,15 @@
         event.preventDefault();
         alert('Downloading ....');
         var getTime = new Date().getTime();
+        console.log('.......1........');
         var files = new Array('/sample128k','/sample256k','/sample512k','/sample1024k','/sample2048k','/sample4096k','/sample8192k')
+        console.log('.........2........');
         var startedAt,endedAt;
         var size = 16256;
-         startedAt = (new Date().getTime());
-         console.log('.....Started.....');
+        console.log('.........2........');
+
+        startedAt = (new Date().getTime());
+        console.log('.....Started.....');
          $.each(files,function(index,url){
           var startedAt  = (new Date().getTime());
             $.ajax({
