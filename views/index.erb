@@ -1,46 +1,45 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="UTF-8">
-  <title>
-    Download Tester
-  </title>
-<style type='text/css'>
-  html,
-  body {
-    margin:0;
-    padding:0;
-    height:100%;
-    font-family:'Monaco';
-    text-align: center;
-  }
-  #wrapper {
-    min-height:100%;
-    position:relative;
-  }
-  #header {
-    padding:10px;
-    background:#5ee;
-  }
-  #content {
-    padding:10px;
-    padding-bottom:20px;   /* Height of the footer element */
-  }
-  #footer {
-    width:100%;
-    height:20px;
-    position:absolute;
-    bottom:0;
-    left:0;
-    background:#ee5;
-  }
-</style>
+  <title>Download Tester</title>
+  <style type='text/css'>
+    html,
+    body {
+      margin:0;
+      padding:0;
+      height:100%;
+      font-family:'Monaco';
+      text-align: center;
+    }
+    #wrapper {
+      min-height:100%;
+      position:relative;
+    }
+    #header {
+      padding:10px;
+      background:#5ee;
+    }
+    #content {
+      padding:10px;
+      padding-bottom:20px;   /* Height of the footer element */
+    }
+    #footer {
+      width:100%;
+      height:20px;
+      position:absolute;
+      bottom:0;
+      left:0;
+      background:#ee5;
+    }
+  </style>
   <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 </head>
 <body>
   <div id='wrapper'>
     <div id='header'> Welcome to SpeedTester :) </div>
     <div id='content'>
+      <a href='javascript:void();' id='start'> Start Testing </a> <br/>
+
       Your Download Speed is <span class="speed" style="color:red"></span>
     </div>
 
@@ -48,34 +47,36 @@
   </div>
   <script type='text/javascript'>
     $(document).ready(function(){
-      // $('div#header').show();
-      var getTime = new Date().getTime();
-      var files = new Array('/sample128k','/sample256k','/sample512k','/sample1024k','/sample2048k','/sample4096k','/sample8192k')
-      var startedAt,endedAt;
-      var size = 16256;
-       startedAt = (new Date().getTime());
-       console.log('.....Started.....');
-       $.each(files,function(index,url){
-        var startedAt  = (new Date().getTime());
-          $.ajax({
-            type: 'GET',
-            url: url+'?cached='+getTime,
-            dataType: 'html',
-            async: false
-          }).done(function(){
-            console.log('...Downloaded File...');
-          });
-       })
-      console.log('......TIME......');
-      endedAt = (new Date().getTime());
-      var totalTime = (endedAt - startedAt);
-      console.log(totalTime);
-      var totalsec = totalTime / 1000;
-      console.log(totalsec);
-      var data = (size/1024/totalsec);
-      console.log(data);
-      var speed = (data.toFixed(2) + ' Mbps').fixed(2)
-      $('span.speed').html(speed);
+      $("a#start").bind('click',function(event){
+        event.preventDefault();
+        var getTime = new Date().getTime();
+        var files = new Array('/sample128k','/sample256k','/sample512k','/sample1024k','/sample2048k','/sample4096k','/sample8192k')
+        var startedAt,endedAt;
+        var size = 16256;
+         startedAt = (new Date().getTime());
+         console.log('.....Started.....');
+         $.each(files,function(index,url){
+          var startedAt  = (new Date().getTime());
+            $.ajax({
+              type: 'GET',
+              url: url+'?cached='+getTime,
+              dataType: 'html',
+              async: false
+            }).done(function(){
+              console.log('...Downloaded File...');
+            });
+         })
+        console.log('......TIME......');
+        endedAt = (new Date().getTime());
+        var totalTime = (endedAt - startedAt);
+        console.log(totalTime);
+        var totalsec = totalTime / 1000;
+        console.log(totalsec);
+        var data = (size/1024/totalsec);
+        console.log(data);
+        var speed = (data.toFixed(2) + ' Mbps').fixed(2)
+        $('span.speed').html(speed);
+      })
       // $('div#header').hide();
     })
   </script>
