@@ -47,11 +47,12 @@
       var startedAt,endedAt;
       // Size in KB
       var size = 16384;
+      find_latency();
+
       startedAt = (new Date().getTime());
       console.log('.....Started.....');
       var settings = {cached: false,datatype: 'html'}
       var time = (new Date().getTime());
-      find_latency();
       $.when(
               $.ajax('/sample128k_2',settings),
               $.ajax('/sample128k',settings),
