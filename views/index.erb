@@ -57,12 +57,12 @@
         var totalsec = totalTime / 1000;
 
         console.log(totalsec);
-        var size_mb = (size/1024);
+        var size_mb = (size/1024/totalsec);
         var data,identifier,speed;
 
         if (totalsec > 0) {
           if (size_mb >= 1) {
-            data = (size/1024/totalsec);
+            data = size_mb;
             identifier = ' MB/s';
           }
           else {
