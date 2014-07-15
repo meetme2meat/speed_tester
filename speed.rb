@@ -5,6 +5,10 @@ require 'sinatra'
   end
 end
 
+get '/test.png' do
+  ':)'
+end
+
 get '/' do
   erb :index
 end
