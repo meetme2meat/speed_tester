@@ -37,39 +37,43 @@
 
   <script type='text/javascript'>
     function find_latency() {
-      var start = new Date().getTime();
-        $('#img').attr('src', 'test.jpg').error(function () {
-        var end = new Date().getTime();
-         $('#timer').html("" + (end - start) + "ms");
-      });
-    }
+      var new_entries = window.performance.getEntries().length;
+      var latency = 0;
+      for(var i=window.earlier_entries;i< new_entries ; i++) {
+        latency += (window.performace.getEntries[i].responseStart - window.performance.getEntries[i].requestStart);
+      }
+      window.latency = latency;
+      console.log(latency);
+    };
     function startDownload() {
       var files = new Array('/sample128k','/sample256k','/sample512k','/sample1024k','/sample2048k','/sample4096k','/sample8192k')
       $('div.loading').show();
       var startedAt,endedAt;
       // Size in KB
       var size = 16384;
-      find_latency();
 
       startedAt = (new Date().getTime());
       console.log('.....Started.....');
+      window.earlier_entries = window.performance.getEntries().length,
       var settings = {cached: false,datatype: 'html'}
       var time = (new Date().getTime());
+
       $.when(
-              // $.ajax('/sample128k_2',settings),
-              // $.ajax('/sample128k',settings),
-              // $.ajax('/sample256k',settings),
-              // $.ajax('/sample8192k',settings),
-              // $.ajax('/sample512k',settings),
-              // $.ajax('/sample1024k'settings),
-              // $.ajax('/sample2048k',settings),
-              // $.ajax('/sample4096k',settings),
+              $.ajax('/sample128k_2',settings),
+              $.ajax('/sample128k',settings),
+              $.ajax('/sample256k',settings),
+              $.ajax('/sample8192k',settings),
+              $.ajax('/sample512k',settings),
+              $.ajax('/sample1024k'settings),
+              $.ajax('/sample2048k',settings),
+              $.ajax('/sample4096k',settings),
               $.ajax('/sample8192k',settings)
             ).done(function(a1,a2,a3,a4,a5,a6,a7){
+        find_latency();
         endedAt = new Date().getTime();
         var totalTime = (endedAt - startedAt);
         console.log(totalTime);
-        var totalsec = totalTime / 1000;
+        var totalsec = (totalTime - window.latency)/ 1000;
 
         console.log(totalsec);
         var size_mb = (size/1024/totalsec);
