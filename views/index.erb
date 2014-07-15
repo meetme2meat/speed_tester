@@ -43,16 +43,17 @@
       startedAt = (new Date().getTime());
       console.log('.....Started.....');
       var settings = {cached: false,datatype: 'html'}
+      var time = (new Date().get().time());
       $.when(
-              $.ajax('/sample128k_2',settings),
-              $.ajax('/sample128k',settings),
-              $.ajax('/sample256k',settings),
-              $.ajax('/sample8192k',settings),
-              $.ajax('/sample512k',settings),
-              $.ajax('/sample1024k',settings),
-              $.ajax('/sample2048k',settings),
-              $.ajax('/sample4096k',settings),
-              $.ajax('/sample8192k',settings)
+              $.ajax('/sample128k_2?time='+time,settings),
+              $.ajax('/sample128k?time='+time,settings),
+              $.ajax('/sample256k?time='+time,settings),
+              $.ajax('/sample8192k?time='+time,settings),
+              $.ajax('/sample512k?time='+time,settings),
+              $.ajax('/sample1024k?time='+time,settings),
+              $.ajax('/sample2048k?time='+time,settings),
+              $.ajax('/sample4096k?time='+time,settings),
+              $.ajax('/sample8192k?time='+time,settings)
             ).done(function(a1,a2,a3,a4,a5,a6,a7){
         endedAt = new Date().getTime();
         var totalTime = (endedAt - startedAt);
