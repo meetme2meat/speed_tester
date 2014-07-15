@@ -39,7 +39,7 @@
       var new_entries = window.performance.getEntries().length;
       var latency = 0;
       for(var i=window.earlier_entries;i< new_entries ; i++) {
-        latency += (window.performace.getEntries[i].responseStart - window.performance.getEntries[i].requestStart);
+        latency += (window.performance.getEntries[i].responseStart - window.performance.getEntries[i].requestStart);
       }
       window.latency = latency;
       console.log(latency);
