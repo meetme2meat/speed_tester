@@ -112,6 +112,39 @@
        <div class='loading' style='display:none'>Please wait, checking your download speed ....</div>
       <div class='text' style='display:none;'> Your Download Speed is <span class="speed" style="color:red"></span>
      </div>
+     <button id="btnStart" type="button" onclick="btnStartClick()"><h3>Start Test</h3></button>
+      <div id="msg"></div>
+      <script type="text/javascript">
+         SomApi.account = "SOM53c4acfe5f9e6"; //your API Key here
+         SomApi.domainName = "speedof.me"; //your domain or sub-domain here
+         SomApi.config.sustainTime = 4;
+         SomApi.onTestCompleted = onTestCompleted;
+         SomApi.onError = onError;
+
+         var msgDiv = document.getElementById("msg");
+
+         function btnStartClick() {
+         msgDiv.innerHTML = "<h3>Speed test in progress. Please wait...</h3>";
+         SomApi.startTest();
+         }
+
+         function onTestCompleted(testResult) {
+         msgDiv.innerHTML =
+         "<h3>"+
+         "Download: " +testResult.download +"Mbps <br/>"+
+         "Upload: " +testResult.upload +"Mbps <br/>"+
+         "Latency: " +testResult.latency +"ms <br/>"+
+         "Jitter: " +testResult.jitter +"ms <br/>"+
+         "Test Server: "+testResult.testServer +"<br/>"+
+         "IP: " +testResult.ip_address +"<br/>"+
+         "Hostname: " +testResult.hostname +"<br/>"+
+         "</h3>";
+        }
+
+       function onError(error) {
+           msgDiv.innerHTML = "Error "+ error.code + ": "+error.message;
+       }
+    </script>
      <img id="img"/>
      <div id="timer"></div>
      <div id='footer'> CopyRight &copy; to Belator </div>
