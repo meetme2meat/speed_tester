@@ -38,75 +38,47 @@
       var files = new Array('/sample128k','/sample256k','/sample512k','/sample1024k','/sample2048k','/sample4096k','/sample8192k')
       $('div.loading').show();
       var startedAt,endedAt;
+      // Size in KB
       var size = 8192;
       startedAt = (new Date().getTime());
       console.log('.....Started.....');
       var settings = {cached: false,datatype: 'html'}
-      $.when($.ajax('/sample8192k',settings)
-        //$.ajax('/sample128k',settings),
-        //$.ajax('/sample256k',settings),
-        //$.ajax('/sample512k',settings),
-        //$.ajax('/sample1024k',settings),
-        //$.ajax('/sample2048k',settings),
-        //$.ajax('/sample4096k',settings),
-        //$.ajax('/sample8192k',settings)
-      ).done(function(a1,a2,a3,a4,a5,a6,a7){
+      //$.ajax('/sample128k',settings),
+      //$.ajax('/sample256k',settings),
+      //$.ajax('/sample512k',settings),
+      //$.ajax('/sample1024k',settings),
+      //$.ajax('/sample2048k',settings),
+      //$.ajax('/sample4096k',settings),
+      //$.ajax('/sample8192k',settings)
+      $.when($.ajax('/sample8192k',settings)).done(function(a1,a2,a3,a4,a5,a6,a7){
         endedAt = new Date().getTime();
         var totalTime = (endedAt - startedAt);
         console.log(totalTime);
         var totalsec = totalTime / 1000;
+
         console.log(totalsec);
-        var data = (size/1024/totalsec);
-        console.log(data);
-        var speed = (data.toFixed(2) + ' Mbps').fixed(2)
+        var size_mb = (size/1024);
+        var data,identifier,speed;
+
+        if (totalsec > 0) {
+          if (size_mb >= 1) {
+            data = (size/1024/totalsec);
+            identifier = ' MB/s';
+          }
+          else {
+            data = size/totalsec;
+            identifier = ' KB/s';
+          }
+          console.log(data);
+          speed = (data.toFixed(2) + identifier).fixed(2);
+        }
+        else {
+          speed = 'Too fast seem like around certainly >= 8MB/s';
+        }
         $('span.speed').html(speed);
         $('div.loading').hide();
         $('div.text').show();
       })
-       // $.each(files,function(index,url){
-       //    var startedAt  = (new Date().getTime());
-       //    $.ajax({
-       //      type: 'GET',
-       //      url: url,
-       //      cached: false,
-       //      dataType: 'html',
-       //    }).done(function(){
-       //      console.log('...Downloaded File...');
-       //    });
-       // })
-
-        // console.log('.......1........');
-        // var files = new Array('/sample128k','/sample256k','/sample512k','/sample1024k','/sample2048k','/sample4096k','/sample8192k')
-        // console.log('.........2........');
-        // var startedAt,endedAt;
-        // var size = 16256;
-        // console.log('.........2........');
-
-        // startedAt = (new Date().getTime());
-        // console.log('.....Started.....');
-        // console.log('Find the problem');
-        //  $.each(files,function(index,url){
-        //   var startedAt  = (new Date().getTime());
-        //     $.ajax({
-        //       type: 'GET',
-        //       url: url+'?cached='+getTime,
-        //       dataType: 'html',
-        //       async: true
-        //     }).done(function(){
-
-        //     });
-        //  })
-        // console.log('......TIME......');
-        // endedAt = (new Date().getTime());
-        // var totalTime = (endedAt - startedAt);
-        // console.log(totalTime);
-        // var totalsec = totalTime / 1000;
-        // console.log(totalsec);
-        // var data = (size/1024/totalsec);
-        // console.log(data);
-        // var speed = (data.toFixed(2) + ' Mbps').fixed(2)
-        // $('span.speed').html(speed);
-        // $('div.text').show();
     };
 
     $(document).ready(function(){
@@ -115,7 +87,6 @@
         event.preventDefault();
         startDownload();
       })
-      // $('div#header').hide();
     });
   </script>
 </head>
