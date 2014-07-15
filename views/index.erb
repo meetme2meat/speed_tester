@@ -38,7 +38,7 @@
       var start = new Date().getTime();
         $('#img').attr('src', 'test.jpg').error(function () {
         var end = new Date().getTime();
-        window.latency = (end-start);
+         $('#timer').html("" + (end - start) + "ms");
       });
     }
     function startDownload() {
@@ -54,12 +54,20 @@
       var settings = {cached: false,datatype: 'html'}
       var time = (new Date().getTime());
       $.when(
-              $.ajax('/unified',settings)
+              // $.ajax('/sample128k_2',settings),
+              // $.ajax('/sample128k',settings),
+              // $.ajax('/sample256k',settings),
+              // $.ajax('/sample8192k',settings),
+              // $.ajax('/sample512k',settings),
+              // $.ajax('/sample1024k'settings),
+              // $.ajax('/sample2048k',settings),
+              // $.ajax('/sample4096k',settings),
+              $.ajax('/sample8192k',settings)
             ).done(function(a1,a2,a3,a4,a5,a6,a7){
         endedAt = new Date().getTime();
         var totalTime = (endedAt - startedAt);
         console.log(totalTime);
-        var totalsec = (totalTime) / 1000;
+        var totalsec = totalTime / 1000;
 
         console.log(totalsec);
         var size_mb = (size/1024/totalsec);
@@ -67,7 +75,7 @@
 
         if (totalsec > 0) {
           if (size_mb >= 1) {
-            data = size_mb;
+            data = size_mb ;
             identifier = ' MB/s';
           }
           else {
@@ -104,7 +112,7 @@
        <div class='loading' style='display:none'>Please wait, checking your download speed ....</div>
       <div class='text' style='display:none;'> Your Download Speed is <span class="speed" style="color:red"></span>
      </div>
-     <img id="img" style='display:none'/>
+     <img id="img"/>
      <div id="timer"></div>
      <div id='footer'> CopyRight &copy; to Belator </div>
    </div>
