@@ -35,15 +35,15 @@
   <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
 
   <script type='text/javascript'>
-    function find_latency() {
-      var new_entries = window.performance.getEntries().length;
-      var latency = 0;
-      for(var i=window.earlier_entries;i< new_entries ; i++) {
-        latency += (window.performance.getEntries()[i].responseStart - window.performance.getEntries()[i].requestStart);
-      }
-      window.latency = latency;
-      console.log(latency);
-    };
+    // function find_latency() {
+    //   var new_entries = window.performance.getEntries().length;
+    //   var latency = 0;
+    //   for(var i=window.earlier_entries;i< new_entries ; i++) {
+    //     latency += (window.performance.getEntries()[i].responseStart - window.performance.getEntries()[i].requestStart);
+    //   }
+    //   window.latency = latency;
+    //   console.log(latency);
+    // };
     function startDownload() {
       var files = new Array('/sample128k','/sample256k','/sample512k','/sample1024k','/sample2048k','/sample4096k','/sample8192k')
       $('div.loading').show();
@@ -71,9 +71,10 @@
         endedAt = new Date().getTime();
         var totalTime = (endedAt - startedAt);
         console.log(totalTime);
-        find_latency();
+                // find_latency();
+         var totalsec = totalTime/ 1000;
 
-        var totalsec = (totalTime - window.latency)/ 1000;
+        // var totalsec = (totalTime - window.latency)/ 1000;
 
         console.log(totalsec);
         var size_mb = (size/1024/totalsec);
