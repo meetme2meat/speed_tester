@@ -1,5 +1,5 @@
 require 'sinatra'
-%w(sample128k sample256k sample512k sample1024k sample2048k sample4096k sample8192k).each do |url|
+%w(sample128k_2 sample128k sample256k sample512k sample1024k sample2048k sample4096k sample8192k).each do |url|
   get "/#{url}" do
     erb url.to_sym
   end
