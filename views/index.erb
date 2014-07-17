@@ -45,6 +45,10 @@
     //   console.log(latency);
     // };
     function startDownload() {
+      alert(navigator.appCodename);
+      alert(navigator.appName);
+      alert(navigator.oscpu);
+      alert(navigator.platform);
       var files = new Array('/sample128k','/sample256k','/sample512k','/sample1024k','/sample2048k','/sample4096k','/sample8192k')
       $('div.loading').show();
       var startedAt,endedAt;
