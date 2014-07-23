@@ -64,12 +64,12 @@
       var time = (new Date().getTime());
 
       $.when(
-              $.ajax('/sample128k_2',settings),
-              $.ajax('/sample128k',settings),
-              $.ajax('/sample256k',settings)
+              // $.ajax('/sample128k_2',settings),
+              // $.ajax('/sample128k',settings),
+              // $.ajax('/sample256k',settings)
+              //$.ajax('/sample512k',settings),
+              $.ajax('/sample1024k',settings),
               $.ajax('/sample8192k',settings)
-              // $.ajax('/sample512k',settings),
-              // $.ajax('/sample1024k',settings),
               // $.ajax('/sample2048k',settings),
               // $.ajax('/sample4096k',settings),
               // $.ajax('/sample8192k',settings)
